@@ -1,0 +1,55 @@
+commit 4fa30249ac4ff8532d46b96bce0d505daa792b17
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:15:44 2018 +0200
+
+    changes
+
+ eka.txt    | 1 +
+ kolmas.txt | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+commit 5bdb4e4379accbfaf7b7f77b14eed07eabdc1bd2
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:11:21 2018 +0200
+
+    3 tiedosto
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2ec7e0169aaacd7126b46a6f7fad7b18303f0016
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:10:40 2018 +0200
+
+    nimi vaihdettu
+
+ eka.txt      | 0
+ tiedosto.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a14fd0e946443033a27925ea67d64515f9a7b0b3
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:09:54 2018 +0200
+
+    toinen poistettu
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 74eea3a3340d81e946496a203b7357b4bf5e1310
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:08:23 2018 +0200
+
+    tiedosto 2 lisatty
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8c73f5491a072fec7b1383a3bf1f211d7648c1a6
+Author: haapseem <haapseem@ad.helsinki.fi>
+Date:   Thu Mar 15 19:07:31 2018 +0200
+
+    tiedosto lisatty
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
