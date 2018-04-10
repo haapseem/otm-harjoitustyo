@@ -13,6 +13,10 @@ Syö pallot kentältä
 Pelivalikko (lähinnä pelin käynnistystä, sekä high score chekkaukseen)
 Peli hahmon liikutus
 power buttons, kummitusten syömiseen
+kentän muodostaminen
+hahmojen luominen
+tuloksen tallennus
+databasen luominen, jos tarpeen
 
 
 ### Laajennus mahdoolisuuksia
