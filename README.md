@@ -7,11 +7,9 @@ linkkii dokkeihikki löytyy [docs](https://github.com/haapseem/otm-harjoitustyo/
 Open-jdk ei sisällä javaFX kirjastoa joten suosittelen oracle javaa
 
 ```bash
-sudo add-apt-repository ppa:webupd8team/java
-
-sudo apt update
-
-sudo apt install oracle-java8-installer
+whee@whoo:~$ sudo add-apt-repository ppa:webupd8team/java
+whee@whoo:~$ sudo apt update
+whee@whoo:~$ sudo apt install oracle-java8-installer
 ```
 
 ### build and run
