@@ -17,7 +17,8 @@ whee@whoo:~$ sudo apt install oracle-java8-installer
 whee@whoo:~$ mvn -T 8 clean install package && java -jar target/app-1.0-SNAPSHOT.jar
 ```
 
-### This will do just everything
+### Test
 ```bash
-whee@whoo:~$ mvn -T 8 test && mvn -T 8 test jacoco:report && mvn -T 8 clean install package && java -jar target/app-1.0-SNAPSHOT.jar
+whee@whoo:~$ mvn test
+whee@whoo:~$ mvn test jacoco:report
 ```
