@@ -1,5 +1,12 @@
 package com.otm.scenes;
 
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import com.otm.motor.Ghost;
+import com.otm.motor.Map;
+import com.otm.motor.Pacman;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -7,82 +14,46 @@ import javafx.scene.shape.Rectangle;
 
 public class GameScene {
 
-	private int[][] map = {
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 2, 2, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1 },
-			{ 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1 },
-			{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-			{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, };
+	protected static Logger logger = Logger.getLogger(GameScene.class.getName());
 
 	private Scene s;
-
+	private int[][] mapp;
 	private int boxS = 30;
 
-	public GameScene() {
+	public GameScene(Map map, Pacman pac, ArrayList<Ghost> ghosts) {
+
+		mapp = map.getMap();
 
 		Group root = new Group();
-		this.s = new Scene(root, boxS * this.map[0].length, boxS * this.map.length, Color.BLACK);
+		this.s = new Scene(root, boxS * this.mapp[0].length, boxS * this.mapp.length, Color.BLACK);
 
-		for (int y = 0; y < this.map.length; y++) {
-			for (int x = 0; x < this.map[y].length; x++) {
-				if (this.map[y][x] == 1) {
+		for (int y = 0; y < this.mapp.length; y++) {
+			for (int x = 0; x < this.mapp[y].length; x++) {
+				if (this.mapp[y][x] == 1) {
 					// if (y < this.map.length - 1) {
-					if (y < this.map.length - 1 && this.map[y + 1][x] == 1) {
+					if (y < this.mapp.length - 1 && this.mapp[y + 1][x] == 1) {
 						Rectangle r = new Rectangle(boxS * x + (boxS * 0.4), boxS * y + (boxS * 0.5), boxS * 0.2,
 								boxS * 0.5);
 						r.setFill(Color.BLUE);
 						root.getChildren().add(r);
 					}
-					if (y > 0 && this.map[y - 1][x] == 1) {
+					if (y > 0 && this.mapp[y - 1][x] == 1) {
 						Rectangle r = new Rectangle(boxS * x + (boxS * 0.4), boxS * y, boxS * 0.2, boxS * 0.5);
 						r.setFill(Color.BLUE);
 						root.getChildren().add(r);
 					}
-					if (x < this.map[y].length - 1 && (this.map[y][x + 1] == 1 || this.map[y][x + 1] == 2)) {
+					if (x < this.mapp[y].length - 1 && (this.mapp[y][x + 1] == 1 || this.mapp[y][x + 1] == 2)) {
 						Rectangle r = new Rectangle(boxS * x + (boxS * 0.5), boxS * y + (boxS * 0.4), boxS * 0.5,
 								boxS * 0.2);
 						r.setFill(Color.BLUE);
 						root.getChildren().add(r);
 					}
-					if (x > 0 && (this.map[y][x - 1] == 1 || this.map[y][x - 1] == 2)) {
+					if (x > 0 && (this.mapp[y][x - 1] == 1 || this.mapp[y][x - 1] == 2)) {
 						Rectangle r = new Rectangle(boxS * x, boxS * y + (boxS * 0.4), boxS * 0.5, boxS * 0.2);
 						r.setFill(Color.BLUE);
 						root.getChildren().add(r);
 					}
-					// }
-					// Rectangle r = new Rectangle((w / this.map[y].length) * x + 4, (h /
-					// this.map.length) * y + 4, 2, 2);
-					// r.setFill(Color.BLUE);
-					// root.getChildren().add(r);
-				} else if (this.map[y][x] == 2) {
+				} else if (this.mapp[y][x] == 2) {
 					Rectangle r = new Rectangle(boxS * x, boxS * y + (boxS * 0.4), boxS, boxS * 0.2);
 					r.setFill(Color.WHITE);
 					root.getChildren().add(r);
