@@ -9,6 +9,7 @@ import javafx.stage.Stage;
  * Hello world!
  *
  */
+@SuppressWarnings("restriction")
 public class App extends Application {
 
 	@Override
