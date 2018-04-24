@@ -49,7 +49,7 @@ public class Game {
 			public void handle(long now) {
 
 				// second = 1 ^ 9
-				if (now - lastUpdate >= Math.pow(10, 9) / 30) {
+				if (now - lastUpdate >= Math.pow(10, 9) / 60) {
 					long start = new Date().getTime();
 					scene = gs.update(pacman, ghosts);
 					pacman.move(map);

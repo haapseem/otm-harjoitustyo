@@ -12,9 +12,15 @@ public class PathPoint {
 	 * @param y
 	 * @param x
 	 */
-	public PathPoint(int h, int y, int x) {
+	public PathPoint(int hx, int hy, int y, int x) {
+		if (hy < 0) {
+			hy = 0 - hy;
+		}
+		if (hx < 0) {
+			hx = 0 - hx;
+		}
 		this.g = 1;
-		this.h = h;
+		this.h = hy + hx;
 		this.x = x;
 		this.y = y;
 	}
@@ -41,9 +47,9 @@ public class PathPoint {
 		if (getClass() != obj.getClass())
 			return false;
 		PathPoint other = (PathPoint) obj;
-		if (x != other.x)
+		if (x != other.getX())
 			return false;
-		if (y != other.y)
+		if (y != other.getY())
 			return false;
 		return true;
 	}

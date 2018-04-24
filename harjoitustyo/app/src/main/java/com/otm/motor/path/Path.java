@@ -14,6 +14,10 @@ public class Path implements Comparable<Path> {
 		this.v = v;
 	}
 
+	public Path() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addPoint(PathPoint p) {
 		this.pPoints.add(p);
 	}
@@ -90,7 +94,7 @@ public class Path implements Comparable<Path> {
 		 * point : p.getPathPoints()) { y += point.getG(); } y +=
 		 * p.getPathPoints().get(pPoints.size() - 1).getH();
 		 */
-		return this.getValue() - p.getValue();
+		return p.getValue() - this.getValue();
 		// return this.getH() - p.getH();
 	}
 

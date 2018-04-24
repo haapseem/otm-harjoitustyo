@@ -2,6 +2,7 @@ package com.otm.motor.path;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import com.otm.motor.Map;
@@ -21,12 +22,14 @@ public class PathFinder {
 		this.map = map;
 	}
 
-	public void changeXsAndYs(int x, int x2, int y, int y2) {
+	public void changeXsAndYs(int x, int y, int x2, int y2) {
 
-		logger.info(x + ", " + y + ", " + x2 + ", " + y2);
+		// logger.info(x + ", " + y + ", " + x2 + ", " + y2);
 		this.x = x;
-		this.x2 = x2;
 		this.y = y;
+		// this.x = 2;
+		// this.y = this.map.getMap().length - 2;
+		this.x2 = x2;
 		this.y2 = y2;
 	}
 
@@ -35,92 +38,100 @@ public class PathFinder {
 	public ArrayList<Path> getPath() {
 		ArrayList<Path> paths = new ArrayList<Path>();
 
-		while (true) {
+		long time = (new Date()).getTime();
+
+		while ((new Date()).getTime() - time < 100) {
 			if (paths.isEmpty()) {
-				if (this.map.getMap()[y - 1][x] == 0 || this.map.getMap()[y - 1][x] == 2) {
+				if (this.map.getMap()[y - 1][x] != 1) {
 					Path p = new Path(Velocity.UP);
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - y)), y, x));
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - (y - 1))), y - 1, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - (y - 1)), y - 1, x));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y + 1][x] == 0 || this.map.getMap()[y + 1][x] == 2) {
+				if (this.map.getMap()[y + 1][x] != 1) {
 					Path p = new Path(Velocity.DOWN);
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - y)), y, x));
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - (y + 1))), y + 1, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - (y + 1)), y + 1, x));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y][x - 1] == 0 || this.map.getMap()[y][x - 1] == 2) {
+				if (this.map.getMap()[y][x - 1] != 1) {
 					Path p = new Path(Velocity.LEFT);
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - y)), y, x));
-					p.addPoint(new PathPoint((Math.abs(this.x2 - (this.x - 1)) + Math.abs(this.y2 - y)), y, x - 1));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - (this.x - 1)), Math.abs(this.y2 - y), y, x - 1));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y][x + 1] == 0 || this.map.getMap()[y][x + 1] == 2) {
+				if (this.map.getMap()[y][x + 1] != 1) {
 					Path p = new Path(Velocity.RIGHT);
-					p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - y)), y, x));
-					p.addPoint(new PathPoint((Math.abs(this.x2 - (this.x + 1)) + Math.abs(this.y2 - y)), y, x + 1));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
+					p.addPoint(new PathPoint(Math.abs(this.x2 - (this.x + 1)), Math.abs(this.y2 - y), y, x + 1));
 					paths.add(p);
 				}
 			} else {
 
 				Path path = paths.get(0);
 
-				PathPoint ppu = new PathPoint((Math.abs(this.x2 - path.getX()) + Math.abs(this.y2 - (path.getY() - 1))),
-						path.getY() - 1, path.getX());
-				PathPoint ppd = new PathPoint((Math.abs(this.x2 - path.getX()) + Math.abs(this.y2 - (path.getY() + 1))),
-						path.getY() + 1, path.getX());
-				PathPoint ppl = new PathPoint((Math.abs(this.x2 - (path.getX() - 1)) + Math.abs(this.y2 - path.getY())),
-						path.getY(), path.getX() - 1);
-				PathPoint ppr = new PathPoint((Math.abs(this.x2 - (path.getX() + 1)) + Math.abs(this.y2 - path.getY())),
-						path.getY(), path.getX() + 1);
+				Path p1 = new Path(paths.get(0).getVelocity());
+				Path p2 = new Path(paths.get(0).getVelocity());
+				Path p3 = new Path(paths.get(0).getVelocity());
+				Path p4 = new Path(paths.get(0).getVelocity());
 
-				if (this.map.getMap()[path.getY() - 1][path.getX()] != 1 && !path.getPathPoints().contains(ppu)) {
+				p1.addAll(path.getPathPoints());
+				p2.addAll(path.getPathPoints());
+				p3.addAll(path.getPathPoints());
+				p4.addAll(path.getPathPoints());
 
-					Path p = new Path(path.getVelocity());
-					p.addAll(path.getPathPoints());
-					p.addPoint(ppu);
-					paths.add(p);
+				int xx = path.getX();
+				int yy = path.getY();
+
+				// PathPoint ppu = new PathPoint(Math.abs(this.x2 - xx) + Math.abs((yy - 1) -
+				// this.y2), yy - 1, xx);
+				// PathPoint ppd = new PathPoint(Math.abs(this.x2 - xx) + Math.abs(this.y2 - (yy
+				// + 1)), yy + 1, xx);
+				// PathPoint ppl = new PathPoint(Math.abs((xx - 1) - this.x2) + Math.abs(this.y2
+				// - yy), yy, xx - 1);
+				// PathPoint ppr = new PathPoint(Math.abs(this.x2 - (xx + 1)) + Math.abs(this.y2
+				// - yy), yy, xx + 1);
+
+				PathPoint ppu = new PathPoint(x2 - xx, y2 - yy + 1, yy - 1, xx);
+				PathPoint ppd = new PathPoint(x2 - xx, y2 - yy - 1, yy + 1, xx);
+				PathPoint ppl = new PathPoint(x2 - xx + 1, y2 - yy, yy, xx - 1);
+				PathPoint ppr = new PathPoint(x2 - xx - 1, y2 - yy, yy, xx + 1);
+
+				if (this.map.getMap()[yy - 1][xx] != 1 && !path.getPathPoints().contains(ppu)) {
+					p1.addPoint(ppu);
+					paths.add(p1);
 				}
-				if (this.map.getMap()[path.getY() + 1][path.getX()] != 1 && !path.getPathPoints().contains(ppd)) {
-
-					Path p = path;
-					p.addPoint(ppd);
-					paths.add(p);
+				xx = xx - xx + xx;
+				if (this.map.getMap()[yy + 1][xx] != 1 && !path.getPathPoints().contains(ppd)) {
+					p2.addPoint(ppd);
+					paths.add(p2);
 				}
-				if (path.getX() != 0 && this.map.getMap()[path.getY()][path.getX() - 1] != 1
-						&& !path.getPathPoints().contains(ppl)) {
-
-					Path p = path;
-					p.addPoint(ppl);
-					paths.add(p);
-				}
-				if (path.getX() != this.map.getMap()[0].length - 1
-						&& this.map.getMap()[path.getY()][path.getX() + 1] != 1
+				xx = xx - xx + xx;
+				if (xx != this.map.getMap()[0].length - 1 && this.map.getMap()[yy][xx + 1] != 1
 						&& !path.getPathPoints().contains(ppr)) {
-
-					Path p = path;
-					p.addPoint(ppr);
-					paths.add(p);
+					p3.addPoint(ppr);
+					paths.add(p3);
+				}
+				xx = xx - xx + xx;
+				if (xx != 0 && this.map.getMap()[yy][xx - 1] != 1 && !path.getPathPoints().contains(ppl)) {
+					p4.addPoint(ppl);
+					paths.add(p4);
 				}
 				paths.remove(path);
 
-				// Collections.sort(paths);
-				// logger.info(paths.toString());
-
-				// break;
 			}
 
-			Collections.sort(paths);
+			Collections.sort(paths, (a, b) -> a.getValue() < b.getValue() ? -1 : a.getValue() == b.getValue() ? 0 : 1);
+			// paths = (ArrayList<Path>) paths.stream().sorted((o1, o2) -> o1.getValue() -
+			// o2.getValue())
+			// .collect(Collectors.toList());
 
-			// logger.info(paths.toString());
+			for (int i = 1; i < paths.size(); i++) {
+				if (paths.get(i).getValue() < paths.get(0).getValue()) {
+					logger.info("Not the shortest");
+				}
+			}
 
-			//
-			// logger.info("" + (paths.get(0).getX() == this.x2 && paths.get(0).getY() ==
-			// this.y2));
-			// logger.info(paths.get(0).getX() + " = " + this.x2);
-			// logger.info(paths.get(0).getY() + " = " + this.y2);
-
-			// logger.info("finding path");
 			if (paths.isEmpty()) {
 				break;
 			}
@@ -129,22 +140,14 @@ public class PathFinder {
 				// logger.info("A HIT");
 				break;
 			}
-			// if (loop == 500) {
-			// loop = 0;
-			// break;
-			// }
-			// break;
-			loop++;
 		}
 		if (paths.isEmpty()) {
 
 			Path p = new Path(Velocity.UP);
-			p.addPoint(new PathPoint((Math.abs(this.x2 - this.x) + Math.abs(this.y2 - y)), y, x));
+			p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
 			paths.add(p);
-
-			// return p.getPathPoints();
 		}
-		// return paths.get(0).getPathPoints();
+
 		return paths;
 	}
 
