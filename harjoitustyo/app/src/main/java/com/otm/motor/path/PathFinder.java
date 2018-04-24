@@ -40,7 +40,7 @@ public class PathFinder {
 
 		long time = (new Date()).getTime();
 
-		while ((new Date()).getTime() - time < 100) {
+		while ((new Date()).getTime() - time < 50) {
 			if (paths.isEmpty()) {
 				if (this.map.getMap()[y - 1][x] != 1) {
 					Path p = new Path(Velocity.UP);
