@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import com.otm.motor.path.PathFinder;
 import com.otm.scenes.GameScene;
 
 import javafx.animation.AnimationTimer;
@@ -27,6 +28,9 @@ public class Game {
 		ghosts = new ArrayList<Ghost>();
 		map = new Map();
 
+		(new PathFinder(13, 24, 16, 24, map)).getPath();
+
+		ghosts.add(new Ghost());
 		// scene = (new GameScene(map, pacman, ghosts)).getScene();
 		/**
 		 * Animation timer
@@ -45,7 +49,7 @@ public class Game {
 			public void handle(long now) {
 
 				// second = 1 ^ 9
-				if (now - lastUpdate >= Math.pow(10, 9) / 60) {
+				if (now - lastUpdate >= Math.pow(10, 9) / 30) {
 					long start = new Date().getTime();
 					scene = gs.update(pacman, ghosts);
 					pacman.move(map);
