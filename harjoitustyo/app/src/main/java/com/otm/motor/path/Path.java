@@ -15,7 +15,6 @@ public class Path implements Comparable<Path> {
 	}
 
 	public Path() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void addPoint(PathPoint p) {

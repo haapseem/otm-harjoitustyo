@@ -9,7 +9,6 @@ public class Pacman extends Sprite {
 	private Velocity v, waitingV;
 
 	public Pacman() {
-		// 14.5, 24
 		super(15.5, 24);
 		this.v = Velocity.RIGHT;
 		this.waitingV = Velocity.NONE;

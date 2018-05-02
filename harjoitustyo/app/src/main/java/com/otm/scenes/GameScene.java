@@ -1,6 +1,7 @@
 package com.otm.scenes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import com.otm.motor.Ghost;
@@ -26,17 +27,24 @@ public class GameScene {
 	private int boxS = 20;
 	private PathFinder pf;
 	private int time = 1;
+	// private HashMap<Ghost, Path> paths;
 	private ArrayList<PathPoint> points;
-	private ArrayList<Path> paths;
+	private HashMap<Ghost, ArrayList<Path>> paths;
 
 	public GameScene(Map map, Pacman pac, ArrayList<Ghost> ghosts) {
 
 		mapp = map.getMap();
-		this.pf = new PathFinder(13, 24, 16, 24, map);
-		this.points = this.pf.getPath().get(0).getPathPoints();
-		this.paths = this.pf.getPath();
+		// this.pf = new PathFinder(13, 24, 16, 24, map);
+		// this.points = this.pf.getPath().get(0).getPathPoints();
+		// this.paths = this.pf.getPath();
+		this.paths = new HashMap<Ghost, ArrayList<Path>>();
+		this.points = new ArrayList<PathPoint>();
 
 		this.update(pac, ghosts);
+	}
+
+	public void addPaths(HashMap<Ghost, ArrayList<Path>> paths) {
+		this.paths = paths;
 	}
 
 	public Scene update(Pacman pac, ArrayList<Ghost> ghosts) {
@@ -45,32 +53,37 @@ public class GameScene {
 
 		this.s = new Scene(root, boxS * this.mapp[0].length, boxS * this.mapp.length, Color.BLACK);
 
-		time -= 1;
+		// time -= 1;
 
-		if (!((int) pac.getX() == ghosts.get(0).getX() && (int) pac.getY() == ghosts.get(0).getX()) && time == 0) {
-			time = 10;
+		// if (!((int) pac.getX() == ghosts.get(0).getX() && (int) pac.getY() ==
+		// ghosts.get(0).getX()) && time == 0) {
+		// time = 10;
+		//
+		// this.pf.changeXsAndYs((int) ghosts.get(0).getX(), (int) ghosts.get(0).getY(),
+		// (int) pac.getX(),
+		// (int) pac.getY());
+		//
+		// this.paths = this.pf.getPath();
+		// this.points = this.paths.get(0).getPathPoints();
+		// }
 
-			this.pf.changeXsAndYs((int) ghosts.get(0).getX(), (int) ghosts.get(0).getY(), (int) pac.getX(),
-					(int) pac.getY());
+		if (!this.paths.isEmpty()) {
+			for (Path path : this.paths.get(ghosts.get(0))) {
+				for (PathPoint p : path.getPathPoints()) {
+					Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
+							boxS * 0.2, boxS * 0.2);
+					rec.setFill(Color.RED);
+					root.getChildren().add(rec);
+				}
+			}
+			this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
 
-			this.paths = this.pf.getPath();
-			this.points = this.paths.get(0).getPathPoints();
-		}
-
-		for (Path path : this.paths) {
-			for (PathPoint p : path.getPathPoints()) {
+			for (PathPoint p : points) {
 				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
 						boxS * 0.2, boxS * 0.2);
-				rec.setFill(Color.RED);
+				rec.setFill(Color.GREEN);
 				root.getChildren().add(rec);
 			}
-		}
-
-		for (PathPoint p : points) {
-			Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4), boxS * 0.2,
-					boxS * 0.2);
-			rec.setFill(Color.GREEN);
-			root.getChildren().add(rec);
 		}
 
 		for (int y = 0; y < this.mapp.length; y++) {
