@@ -10,12 +10,14 @@ public class Ghost extends Sprite {
 	private Velocity v;
 	private Velocity v2;
 	private Map map;
+	private int moveToken;
 
 	public Ghost(String name, Map map) {
 		super(14, 15);
 		this.name = name;
 		v = Velocity.UP;
 		this.map = map;
+		this.moveToken = 0;
 	}
 
 	public boolean canMove() {
@@ -39,6 +41,10 @@ public class Ghost extends Sprite {
 	}
 
 	public void move() {
+		if (moveToken == 1) {
+			moveToken = 0;
+			return;
+		}
 
 		if (this.getX() == 1 && this.v == Velocity.LEFT) {
 			this.v = Velocity.RIGHT;
@@ -96,6 +102,7 @@ public class Ghost extends Sprite {
 			a = Velocity.LEFT;
 		}
 		if (turn(a)) {
+			moveToken = 1;
 			this.move();
 		} else {
 			this.randomTurn();

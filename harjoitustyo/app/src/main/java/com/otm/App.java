@@ -17,7 +17,7 @@ public class App extends Application {
 		new Game(stage);
 	}
 
-	public static void Game(String args[]) {
+	public static void main(String args[]) {
 		launch(args);
 	}
 }

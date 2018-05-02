@@ -14,7 +14,9 @@ whee@whoo:~$ sudo apt install oracle-java8-installer
 
 ### build and run
 ```bash
-whee@whoo:~$ mvn -T 8 clean install package && java -jar target/app-1.0-SNAPSHOT.jar
+whee@whoo:~$ mvn clean package && java -jar target/app-1.0-SNAPSHOT.jar
+whee@whoo:~$ # OR
+whee@whoo:~$ mvn clean exec:java -Dexec.mainClass="com.otm.App"
 ```
 
 ### Test

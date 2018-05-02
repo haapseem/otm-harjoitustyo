@@ -68,20 +68,12 @@ public class GameScene {
 		// }
 
 		if (!this.paths.isEmpty()) {
-			for (Path path : this.paths.get(ghosts.get(0))) {
-				for (PathPoint p : path.getPathPoints()) {
-					Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
-							boxS * 0.2, boxS * 0.2);
-					rec.setFill(Color.RED);
-					root.getChildren().add(rec);
-				}
-			}
 			this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
 
 			for (PathPoint p : points) {
 				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
 						boxS * 0.2, boxS * 0.2);
-				rec.setFill(Color.GREEN);
+				rec.setFill(Color.RED);
 				root.getChildren().add(rec);
 			}
 		}
