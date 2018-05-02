@@ -8,7 +8,6 @@ public class Ghost extends Sprite {
 
 	private String name;
 	private Velocity v;
-	private Velocity v2;
 	private Map map;
 	private int moveToken;
 
@@ -41,7 +40,9 @@ public class Ghost extends Sprite {
 	}
 
 	public void move() {
-		if (moveToken == 1) {
+		if (moveToken == 2) {
+			moveToken = 1;
+		} else if (moveToken == 1) {
 			moveToken = 0;
 			return;
 		}
@@ -76,15 +77,27 @@ public class Ghost extends Sprite {
 	}
 
 	public boolean turn(Velocity t) {
-		if (!((this.getX() % 2 == 0 || this.getX() % 2 == 1) && (this.getY() % 2 == 0 || this.getY() % 2 == 1))) {
+		if (t.equals(this.v)) {
+			return false;
+		} else if (!((this.getX() % 2 == 0 || this.getX() % 2 == 1)
+				&& (this.getY() % 2 == 0 || this.getY() % 2 == 1))) {
 			return false;
 		} else if ((t.equals(Velocity.DOWN) && this.v.equals(Velocity.UP))
 				|| (t.equals(Velocity.UP) && this.v.equals(Velocity.DOWN))
 				|| (t.equals(Velocity.LEFT) && this.v.equals(Velocity.RIGHT))
 				|| (t.equals(Velocity.RIGHT) && this.v.equals(Velocity.LEFT))) {
 			return false;
+		} else if ((t.equals(Velocity.DOWN) && (map.getMap()[(int) this.getY() + 1][(int) this.getX()] == 1))
+				|| (t.equals(Velocity.UP) && (map.getMap()[(int) this.getY() - 1][(int) this.getX()] == 1))
+				|| (t.equals(Velocity.LEFT) && (map.getMap()[(int) this.getY()][(int) this.getX() - 1] == 1))
+				|| (t.equals(Velocity.RIGHT) && (map.getMap()[(int) this.getY()][(int) this.getX() + 1] == 1))) {
+			return false;
 		} else {
+			logger.info("THIS V: " + v + ", THIS T: " + t);
 			this.v = t;
+			moveToken = 2;
+			this.move();
+
 			return true;
 		}
 	}
@@ -101,10 +114,8 @@ public class Ghost extends Sprite {
 		} else {
 			a = Velocity.LEFT;
 		}
-		if (turn(a)) {
-			moveToken = 1;
-			this.move();
-		} else {
+		boolean x = turn(a);
+		if (!x) {
 			this.randomTurn();
 		}
 	}
