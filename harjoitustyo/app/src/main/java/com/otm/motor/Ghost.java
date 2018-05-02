@@ -93,11 +93,9 @@ public class Ghost extends Sprite {
 				|| (t.equals(Velocity.RIGHT) && (map.getMap()[(int) this.getY()][(int) this.getX() + 1] == 1))) {
 			return false;
 		} else {
-			logger.info("THIS V: " + v + ", THIS T: " + t);
 			this.v = t;
 			moveToken = 2;
 			this.move();
-
 			return true;
 		}
 	}

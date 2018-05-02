@@ -34,17 +34,14 @@ public class GameScene {
 	public GameScene(Map map, Pacman pac, ArrayList<Ghost> ghosts) {
 
 		mapp = map.getMap();
-		// this.pf = new PathFinder(13, 24, 16, 24, map);
-		// this.points = this.pf.getPath().get(0).getPathPoints();
-		// this.paths = this.pf.getPath();
 		this.paths = new HashMap<Ghost, ArrayList<Path>>();
 		this.points = new ArrayList<PathPoint>();
 
 		this.update(pac, ghosts);
 	}
 
-	public void addPaths(HashMap<Ghost, ArrayList<Path>> paths) {
-		this.paths = paths;
+	public void addPaths(Ghost g, ArrayList<Path> paths) {
+		this.paths.put(g, paths);
 	}
 
 	public Scene update(Pacman pac, ArrayList<Ghost> ghosts) {
@@ -53,27 +50,33 @@ public class GameScene {
 
 		this.s = new Scene(root, boxS * this.mapp[0].length, boxS * this.mapp.length, Color.BLACK);
 
-		// time -= 1;
-
-		// if (!((int) pac.getX() == ghosts.get(0).getX() && (int) pac.getY() ==
-		// ghosts.get(0).getX()) && time == 0) {
-		// time = 10;
-		//
-		// this.pf.changeXsAndYs((int) ghosts.get(0).getX(), (int) ghosts.get(0).getY(),
-		// (int) pac.getX(),
-		// (int) pac.getY());
-		//
-		// this.paths = this.pf.getPath();
-		// this.points = this.paths.get(0).getPathPoints();
-		// }
-
-		if (!this.paths.isEmpty()) {
+		if ((this.paths.containsKey(ghosts.get(0)) && this.paths.containsKey(ghosts.get(1))
+				&& this.paths.containsKey(ghosts.get(2)))) {
+			// red
 			this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
 
 			for (PathPoint p : points) {
 				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
 						boxS * 0.2, boxS * 0.2);
 				rec.setFill(Color.RED);
+				root.getChildren().add(rec);
+			}
+			// pink
+			this.points = this.paths.get(ghosts.get(1)).get(0).getPathPoints();
+
+			for (PathPoint p : points) {
+				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
+						boxS * 0.2, boxS * 0.2);
+				rec.setFill(Color.PINK);
+				root.getChildren().add(rec);
+			}
+			// orange
+			this.points = this.paths.get(ghosts.get(2)).get(0).getPathPoints();
+
+			for (PathPoint p : points) {
+				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
+						boxS * 0.2, boxS * 0.2);
+				rec.setFill(Color.ORANGE);
 				root.getChildren().add(rec);
 			}
 		}
@@ -120,6 +123,16 @@ public class GameScene {
 				boxS * (ghosts.get(0).getY() + 1) - (boxS / 2), boxS / 2);
 		c2.setFill(Color.RED);
 		root.getChildren().add(c2);
+
+		Circle c3 = new Circle(boxS * (ghosts.get(1).getX() + 1) - (boxS / 2),
+				boxS * (ghosts.get(1).getY() + 1) - (boxS / 2), boxS / 2);
+		c3.setFill(Color.PINK);
+		root.getChildren().add(c3);
+
+		Circle c4 = new Circle(boxS * (ghosts.get(2).getX() + 1) - (boxS / 2),
+				boxS * (ghosts.get(2).getY() + 1) - (boxS / 2), boxS / 2);
+		c4.setFill(Color.ORANGE);
+		root.getChildren().add(c4);
 
 		return this.s;
 
