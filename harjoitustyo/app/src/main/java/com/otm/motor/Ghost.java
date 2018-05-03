@@ -14,9 +14,21 @@ public class Ghost extends Sprite {
 	public Ghost(String name, Map map) {
 		super(14, 15);
 		this.name = name;
-		v = Velocity.UP;
+		if (name == "pink") {
+			this.setY(this.getY() - 1);
+		} else if (name == "blue") {
+			this.setX(this.getX() + 1);
+		} else if (name == "red") {
+			this.setY(this.getY() - 1);
+			this.setX(this.getX() + 1);
+		}
+		v = Velocity.NONE;
 		this.map = map;
 		this.moveToken = 0;
+	}
+
+	public Velocity getVelocity() {
+		return this.v;
 	}
 
 	public boolean canMove() {

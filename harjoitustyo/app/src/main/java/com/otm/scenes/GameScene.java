@@ -50,36 +50,53 @@ public class GameScene {
 
 		this.s = new Scene(root, boxS * this.mapp[0].length, boxS * this.mapp.length, Color.BLACK);
 
-		if ((this.paths.containsKey(ghosts.get(0)) && this.paths.containsKey(ghosts.get(1))
-				&& this.paths.containsKey(ghosts.get(2)))) {
-			// red
-			this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
+		// trace paths A*
 
-			for (PathPoint p : points) {
-				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
-						boxS * 0.2, boxS * 0.2);
-				rec.setFill(Color.RED);
-				root.getChildren().add(rec);
-			}
-			// pink
-			this.points = this.paths.get(ghosts.get(1)).get(0).getPathPoints();
-
-			for (PathPoint p : points) {
-				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
-						boxS * 0.2, boxS * 0.2);
-				rec.setFill(Color.PINK);
-				root.getChildren().add(rec);
-			}
-			// orange
-			this.points = this.paths.get(ghosts.get(2)).get(0).getPathPoints();
-
-			for (PathPoint p : points) {
-				Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY() + (boxS * 0.4),
-						boxS * 0.2, boxS * 0.2);
-				rec.setFill(Color.ORANGE);
-				root.getChildren().add(rec);
-			}
-		}
+		// if ((this.paths.containsKey(ghosts.get(0)) &&
+		// this.paths.containsKey(ghosts.get(1))
+		// && this.paths.containsKey(ghosts.get(2)) &&
+		// this.paths.containsKey(ghosts.get(3)))) {
+		// // red
+		// this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
+		//
+		// for (PathPoint p : points) {
+		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
+		// + (boxS * 0.4),
+		// boxS * 0.2, boxS * 0.2);
+		// rec.setFill(Color.RED);
+		// root.getChildren().add(rec);
+		// }
+		// // pink
+		// this.points = this.paths.get(ghosts.get(1)).get(0).getPathPoints();
+		//
+		// for (PathPoint p : points) {
+		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
+		// + (boxS * 0.4),
+		// boxS * 0.2, boxS * 0.2);
+		// rec.setFill(Color.PINK);
+		// root.getChildren().add(rec);
+		// }
+		// // orange
+		// this.points = this.paths.get(ghosts.get(2)).get(0).getPathPoints();
+		//
+		// for (PathPoint p : points) {
+		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
+		// + (boxS * 0.4),
+		// boxS * 0.2, boxS * 0.2);
+		// rec.setFill(Color.ORANGE);
+		// root.getChildren().add(rec);
+		// }
+		// // blue
+		// this.points = this.paths.get(ghosts.get(3)).get(0).getPathPoints();
+		//
+		// for (PathPoint p : points) {
+		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
+		// + (boxS * 0.4),
+		// boxS * 0.2, boxS * 0.2);
+		// rec.setFill(Color.BLUE);
+		// root.getChildren().add(rec);
+		// }
+		// }
 
 		for (int y = 0; y < this.mapp.length; y++) {
 			for (int x = 0; x < this.mapp[y].length; x++) {
@@ -111,6 +128,11 @@ public class GameScene {
 					Rectangle r = new Rectangle(boxS * x, boxS * y + (boxS * 0.4), boxS, boxS * 0.2);
 					r.setFill(Color.WHITE);
 					root.getChildren().add(r);
+				} else if (this.mapp[y][x] == 3) {
+					Rectangle r = new Rectangle(boxS * x + (boxS * 0.4), boxS * y + (boxS * 0.4), boxS * 0.2,
+							boxS * 0.2);
+					r.setFill(Color.WHITE);
+					root.getChildren().add(r);
 				}
 			}
 		}
@@ -134,8 +156,17 @@ public class GameScene {
 		c4.setFill(Color.ORANGE);
 		root.getChildren().add(c4);
 
+		Circle c5 = new Circle(boxS * (ghosts.get(3).getX() + 1) - (boxS / 2),
+				boxS * (ghosts.get(3).getY() + 1) - (boxS / 2), boxS / 2);
+		c5.setFill(Color.BLUE);
+		root.getChildren().add(c5);
+
 		return this.s;
 
+	}
+
+	public void setMap(Map map) {
+		this.mapp = map.getMap();
 	}
 
 	public Scene getScene() {

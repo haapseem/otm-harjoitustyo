@@ -43,13 +43,17 @@ public class Pacman extends Sprite {
 		}
 		switch (this.v) {
 		case DOWN:
-			return (map.getMap()[(int) this.getY() + 1][(int) this.getX()] == 0);
+			return (map.getMap()[(int) this.getY() + 1][(int) this.getX()] != 1
+					&& map.getMap()[(int) this.getY() + 1][(int) this.getX()] != 2);
 		case UP:
-			return (map.getMap()[(int) this.getY() - 1][(int) this.getX()] == 0);
+			return (map.getMap()[(int) this.getY() - 1][(int) this.getX()] != 1
+					&& map.getMap()[(int) this.getY() - 1][(int) this.getX()] != 2);
 		case LEFT:
-			return (map.getMap()[(int) this.getY()][(int) this.getX() - 1] == 0);
+			return (map.getMap()[(int) this.getY()][(int) this.getX() - 1] != 1
+					&& map.getMap()[(int) this.getY()][(int) this.getX() - 1] != 2);
 		case RIGHT:
-			return (map.getMap()[(int) this.getY()][(int) this.getX() + 1] == 0);
+			return (map.getMap()[(int) this.getY()][(int) this.getX() + 1] != 1
+					&& map.getMap()[(int) this.getY()][(int) this.getX() + 1] != 2);
 		default:
 			break;
 		}

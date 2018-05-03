@@ -13,6 +13,7 @@ public class PathFinder {
 
 	private int x, y, x2, y2;
 	private Map map;
+	private Velocity v;
 
 	public PathFinder(int x, int y, int x2, int y2, Map map) {
 		this.x = x;
@@ -20,6 +21,11 @@ public class PathFinder {
 		this.x2 = x2;
 		this.y2 = y2;
 		this.map = map;
+		this.v = Velocity.NONE;
+	}
+
+	public void setVelocity(Velocity v) {
+		this.v = v;
 	}
 
 	public void changeXsAndYs(int x, int y, int x2, int y2) {
@@ -42,25 +48,25 @@ public class PathFinder {
 
 		while ((new Date()).getTime() - time < 50) {
 			if (paths.isEmpty()) {
-				if (this.map.getMap()[y - 1][x] != 1) {
+				if (this.map.getMap()[y - 1][x] != 1 && !this.v.equals(Velocity.DOWN)) {
 					Path p = new Path(Velocity.UP);
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - (y - 1)), y - 1, x));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y + 1][x] != 1) {
+				if (this.map.getMap()[y + 1][x] != 1 && !this.v.equals(Velocity.UP)) {
 					Path p = new Path(Velocity.DOWN);
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - (y + 1)), y + 1, x));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y][x - 1] != 1) {
+				if (this.map.getMap()[y][x - 1] != 1 && !this.v.equals(Velocity.RIGHT)) {
 					Path p = new Path(Velocity.LEFT);
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
 					p.addPoint(new PathPoint(Math.abs(this.x2 - (this.x - 1)), Math.abs(this.y2 - y), y, x - 1));
 					paths.add(p);
 				}
-				if (this.map.getMap()[y][x + 1] != 1) {
+				if (this.map.getMap()[y][x + 1] != 1 && !this.v.equals(Velocity.LEFT)) {
 					Path p = new Path(Velocity.RIGHT);
 					p.addPoint(new PathPoint(Math.abs(this.x2 - this.x), Math.abs(this.y2 - y), y, x));
 					p.addPoint(new PathPoint(Math.abs(this.x2 - (this.x + 1)), Math.abs(this.y2 - y), y, x + 1));
