@@ -24,3 +24,6 @@ whee@whoo:~$ mvn clean exec:java -Dexec.mainClass="com.otm.App"
 whee@whoo:~$ mvn test
 whee@whoo:~$ mvn test jacoco:report
 ```
+
+### Luokkakaavio
+![luokkakaavio](https://github.com/haapseem/otm-harjoitustyo/blob/master/harjoitustyo/doc/luokkaKaavio.png?raw=true)

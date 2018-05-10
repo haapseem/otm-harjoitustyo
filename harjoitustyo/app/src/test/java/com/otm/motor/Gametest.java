@@ -1,5 +1,7 @@
 package com.otm.motor;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,6 +43,7 @@ public class Gametest {
 	public void createGame() {
 		Stage s = new Stage();
 		Game g = new Game(stage);
+		assertTrue(!g.equals(null));
 	}
 
 }
