@@ -7,17 +7,9 @@ pelaaja
 Kummitukset joilla eri persoonat
 
 ### tavoite
-Syö pallot kentältä
+Syödä pallot kentältä
 
 ### Toiminnallisuus
-Pelivalikko (lähinnä pelin käynnistystä, sekä high score chekkaukseen)
-Peli hahmon liikutus
-power buttons, kummitusten syömiseen
-kentän muodostaminen
-hahmojen luominen
-tuloksen tallennus
-databasen luominen, jos tarpeen
-
-
-### Laajennus mahdoolisuuksia
-com vs com
+Peli hahmo kykenee liikkumaan kentällä pelaajan käskyjen mukaan.
+Pelissä olevat kummitukset jahtaavat pacmaniä eri tavoin.
+Peli tallentaa HighScoren databaseen ja näyttää titlessä.

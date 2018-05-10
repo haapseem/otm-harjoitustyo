@@ -2,6 +2,7 @@
 Tarkotuksena on tehrä tämmöne päkmäni peli
 
 linkkii dokkeihikki löytyy [docs](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc)
+Määritelmä [määritelmä](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc/hahmotelma.md)
 
 ### java
 Open-jdk ei sisällä javaFX kirjastoa joten suosittelen oracle javaa
