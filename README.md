@@ -4,7 +4,8 @@ Tarkotuksena on tehrä tämmöne päkmäni peli
 Peliä voi pelata w,a,s,d tai nuolinäppäimillä
 
 linkkii dokkeihikki löytyy [docs](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc)
-Määritelmä [määritelmä](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc/hahmotelma.md)
+
+Määritelmä: [määritelmä](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc/hahmotelma.md)
 
 ### java
 Open-jdk ei sisällä javaFX kirjastoa joten suosittelen oracle javaa
