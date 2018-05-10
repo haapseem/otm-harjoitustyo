@@ -50,58 +50,9 @@ public class GameScene {
 
 		this.s = new Scene(root, boxS * this.mapp[0].length, boxS * this.mapp.length, Color.BLACK);
 
-		// trace paths A*
-
-		// if ((this.paths.containsKey(ghosts.get(0)) &&
-		// this.paths.containsKey(ghosts.get(1))
-		// && this.paths.containsKey(ghosts.get(2)) &&
-		// this.paths.containsKey(ghosts.get(3)))) {
-		// // red
-		// this.points = this.paths.get(ghosts.get(0)).get(0).getPathPoints();
-		//
-		// for (PathPoint p : points) {
-		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
-		// + (boxS * 0.4),
-		// boxS * 0.2, boxS * 0.2);
-		// rec.setFill(Color.RED);
-		// root.getChildren().add(rec);
-		// }
-		// // pink
-		// this.points = this.paths.get(ghosts.get(1)).get(0).getPathPoints();
-		//
-		// for (PathPoint p : points) {
-		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
-		// + (boxS * 0.4),
-		// boxS * 0.2, boxS * 0.2);
-		// rec.setFill(Color.PINK);
-		// root.getChildren().add(rec);
-		// }
-		// // orange
-		// this.points = this.paths.get(ghosts.get(2)).get(0).getPathPoints();
-		//
-		// for (PathPoint p : points) {
-		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
-		// + (boxS * 0.4),
-		// boxS * 0.2, boxS * 0.2);
-		// rec.setFill(Color.ORANGE);
-		// root.getChildren().add(rec);
-		// }
-		// // blue
-		// this.points = this.paths.get(ghosts.get(3)).get(0).getPathPoints();
-		//
-		// for (PathPoint p : points) {
-		// Rectangle rec = new Rectangle(boxS * p.getX() + (boxS * 0.4), boxS * p.getY()
-		// + (boxS * 0.4),
-		// boxS * 0.2, boxS * 0.2);
-		// rec.setFill(Color.BLUE);
-		// root.getChildren().add(rec);
-		// }
-		// }
-
 		for (int y = 0; y < this.mapp.length; y++) {
 			for (int x = 0; x < this.mapp[y].length; x++) {
 				if (this.mapp[y][x] == 1) {
-					// if (y < this.map.length - 1) {
 					if (y < this.mapp.length - 1 && this.mapp[y + 1][x] == 1) {
 						Rectangle r = new Rectangle(boxS * x + (boxS * 0.4), boxS * y + (boxS * 0.5), boxS * 0.2,
 								boxS * 0.5);

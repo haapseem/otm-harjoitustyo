@@ -85,16 +85,7 @@ public class Path implements Comparable<Path> {
 	}
 
 	public int compareTo(Path p) {
-		/*
-		 * 
-		 * 
-		 * int x = 0; int y = 0; for (PathPoint point : this.pPoints) { x +=
-		 * point.getG(); } x += pPoints.get(pPoints.size() - 1).getH(); for (PathPoint
-		 * point : p.getPathPoints()) { y += point.getG(); } y +=
-		 * p.getPathPoints().get(pPoints.size() - 1).getH();
-		 */
 		return p.getValue() - this.getValue();
-		// return this.getH() - p.getH();
 	}
 
 	public int getH() {

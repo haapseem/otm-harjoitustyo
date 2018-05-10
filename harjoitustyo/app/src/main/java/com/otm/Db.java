@@ -20,7 +20,6 @@ public class Db {
 					+ "score int," + "PRIMARY KEY(id));");
 			s.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -33,14 +32,12 @@ public class Db {
 				return new Highscore(rs.getInt("id"), rs.getInt("score"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			PreparedStatement ps = c.prepareStatement("INSERT INTO HighScores (id, score) VALUES (0, 0)");
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return new Highscore(0, 0);
@@ -53,7 +50,6 @@ public class Db {
 			ps.setInt(1, score);
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

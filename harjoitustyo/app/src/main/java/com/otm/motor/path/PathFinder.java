@@ -30,11 +30,8 @@ public class PathFinder {
 
 	public void changeXsAndYs(int x, int y, int x2, int y2) {
 
-		// logger.info(x + ", " + y + ", " + x2 + ", " + y2);
 		this.x = x;
 		this.y = y;
-		// this.x = 2;
-		// this.y = this.map.getMap().length - 2;
 		this.x2 = x2;
 		this.y2 = y2;
 	}
@@ -89,15 +86,6 @@ public class PathFinder {
 				int xx = path.getX();
 				int yy = path.getY();
 
-				// PathPoint ppu = new PathPoint(Math.abs(this.x2 - xx) + Math.abs((yy - 1) -
-				// this.y2), yy - 1, xx);
-				// PathPoint ppd = new PathPoint(Math.abs(this.x2 - xx) + Math.abs(this.y2 - (yy
-				// + 1)), yy + 1, xx);
-				// PathPoint ppl = new PathPoint(Math.abs((xx - 1) - this.x2) + Math.abs(this.y2
-				// - yy), yy, xx - 1);
-				// PathPoint ppr = new PathPoint(Math.abs(this.x2 - (xx + 1)) + Math.abs(this.y2
-				// - yy), yy, xx + 1);
-
 				PathPoint ppu = new PathPoint(x2 - xx, y2 - yy + 1, yy - 1, xx);
 				PathPoint ppd = new PathPoint(x2 - xx, y2 - yy - 1, yy + 1, xx);
 				PathPoint ppl = new PathPoint(x2 - xx + 1, y2 - yy, yy, xx - 1);
@@ -128,9 +116,6 @@ public class PathFinder {
 			}
 
 			Collections.sort(paths, (a, b) -> a.getValue() < b.getValue() ? -1 : a.getValue() == b.getValue() ? 0 : 1);
-			// paths = (ArrayList<Path>) paths.stream().sorted((o1, o2) -> o1.getValue() -
-			// o2.getValue())
-			// .collect(Collectors.toList());
 
 			for (int i = 1; i < paths.size(); i++) {
 				if (paths.get(i).getValue() < paths.get(0).getValue()) {
@@ -143,7 +128,6 @@ public class PathFinder {
 			}
 
 			if (paths.get(0).getX() == this.x2 && paths.get(0).getY() == this.y2) {
-				// logger.info("A HIT");
 				break;
 			}
 		}

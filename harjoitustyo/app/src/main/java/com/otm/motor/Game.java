@@ -35,7 +35,6 @@ public class Game {
 	private ExecutorService thread1;
 	private ExecutorService thread2;
 	private ExecutorService thread3;
-	// private HashMap<Ghost, Future<ArrayList<Path>>> paths;
 	Future<ArrayList<Path>> future0;
 	Future<ArrayList<Path>> future1;
 	Future<ArrayList<Path>> future2;
@@ -362,12 +361,8 @@ public class Game {
 							iix = px - 2;
 						}
 
-						// logger.info("ix : " + ix);
 						int ix = rx + (iix - rx) * 2;
-						// logger.info("iy : " + iy);
-						// logger.info("ix : " + ix);
 						int iy = ry + (iiy - ry) * 2;
-						// logger.info("iy : " + iy);
 
 						if (ix < 2)
 							ix = 2;

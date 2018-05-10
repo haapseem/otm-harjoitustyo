@@ -5,10 +5,6 @@ import com.otm.motor.Game;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-/**
- * Hello world!
- *
- */
 @SuppressWarnings("restriction")
 public class App extends Application {
 
