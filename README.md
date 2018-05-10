@@ -1,5 +1,7 @@
-# Tervetulemast hieno otm prokkis
+# Pacman
 Tarkotuksena on tehrä tämmöne päkmäni peli
+
+Peliä voi pelata w,a,s,d tai nuolinäppäimillä
 
 linkkii dokkeihikki löytyy [docs](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc)
 Määritelmä [määritelmä](https://github.com/haapseem/otm-harjoitustyo/tree/master/harjoitustyo/doc/hahmotelma.md)
